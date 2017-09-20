@@ -1,0 +1,93 @@
+Introduction to Smart Contracts
+
+A Simple Smart Contract
+Let us begin with the most basic example. It is fine if you do not understand everything right now, we will go into more detail later.
+
+Storage
+pragma solidity ^0.4.0;
+
+contract SimpleStorage {
+    uint storedData;
+
+    function set(uint x) {
+        storedData = x;
+    }
+
+    function get() constant returns (uint) {
+        return storedData;
+    }
+}
+The first line simply tells that the source code is written for Solidity version 0.4.0 or anything newer that does not break functionality (up to, but not including, version 0.5.0). This is to ensure that the contract does not suddenly behave differently with a new compiler version. The keyword pragma is called that way because, in general, pragmas are instructions for the compiler about how to treat the source code (e.g. pragma once).
+
+A contract in the sense of Solidity is a collection of code (its functions) and data (its state) that resides at a specific address on the Ethereum blockchain. The line uint storedData; declares a state variable called storedData of type uint (unsigned integer of 256 bits). You can think of it as a single slot in a database that can be queried and altered by calling functions of the code that manages the database. In the case of Ethereum, this is always the owning contract. And in this case, the functions set and get can be used to modify or retrieve the value of the variable.
+
+To access a state variable, you do not need the prefix this. as is common in other languages.
+
+This contract does not do much yet (due to the infrastructure built by Ethereum) apart from allowing anyone to store a single number that is accessible by anyone in the world without a (feasible) way to prevent you from publishing this number. Of course, anyone could just call set again with a different value and overwrite your number, but the number will still be stored in the history of the blockchain. Later, we will see how you can impose access restrictions so that only you can alter the number.
+
+Note
+
+All identifiers (contract names, function names and variable names) are restricted to the ASCII character set. It is possible to store UTF-8 encoded data in string variables.
+Warning
+
+Be careful with using Unicode text as similarly looking (or even identical) can have different code points and as such will be encoded as a different byte array.
+Subcurrency Example
+The following contract will implement the simplest form of a cryptocurrency. It is possible to generate coins out of thin air, but only the person that created the contract will be able to do that (it is trivial to implement a different issuance scheme). Furthermore, anyone can send coins to each other without any need for registering with username and password - all you need is an Ethereum keypair.
+
+pragma solidity ^0.4.0;
+
+contract Coin {
+    // The keyword "public" makes those variables
+    // readable from outside.
+    address public minter;
+    mapping (address => uint) public balances;
+
+    // Events allow light clients to react on
+    // changes efficiently.
+    event Sent(address from, address to, uint amount);
+
+    // This is the constructor whose code is
+    // run only when the contract is created.
+    function Coin() {
+        minter = msg.sender;
+    }
+
+    function mint(address receiver, uint amount) {
+        if (msg.sender != minter) return;
+        balances[receiver] += amount;
+    }
+
+    function send(address receiver, uint amount) {
+        if (balances[msg.sender] < amount) return;
+        balances[msg.sender] -= amount;
+        balances[receiver] += amount;
+        Sent(msg.sender, receiver, amount);
+    }
+}
+This contract introduces some new concepts, let us go through them one by one.
+
+The line address public minter; declares a state variable of type address that is publicly accessible. The address type is a 160-bit value that does not allow any arithmetic operations. It is suitable for storing addresses of contracts or keypairs belonging to external persons. The keyword public automatically generates a function that allows you to access the current value of the state variable. Without this keyword, other contracts have no way to access the variable. The function will look something like this:
+
+function minter() returns (address) { return minter; }
+Of course, adding a function exactly like that will not work because we would have a function and a state variable with the same name, but hopefully, you get the idea - the compiler figures that out for you.
+
+The next line, mapping (address => uint) public balances; also creates a public state variable, but it is a more complex datatype. The type maps addresses to unsigned integers. Mappings can be seen as hash tables which are virtually initialized such that every possible key exists and is mapped to a value whose byte-representation is all zeros. This analogy does not go too far, though, as it is neither possible to obtain a list of all keys of a mapping, nor a list of all values. So either keep in mind (or better, keep a list or use a more advanced data type) what you added to the mapping or use it in a context where this is not needed, like this one. The getter function created by the public keyword is a bit more complex in this case. It roughly looks like the following:
+
+function balances(address _account) returns (uint) {
+    return balances[_account];
+}
+As you see, you can use this function to easily query the balance of a single account.
+
+The line event Sent(address from, address to, uint amount); declares a so-called “event” which is fired in the last line of the function send. User interfaces (as well as server applications of course) can listen for those events being fired on the blockchain without much cost. As soon as it is fired, the listener will also receive the arguments from, to and amount, which makes it easy to track transactions. In order to listen for this event, you would use
+
+Coin.Sent().watch({}, '', function(error, result) {
+    if (!error) {
+        console.log("Coin transfer: " + result.args.amount +
+            " coins were sent from " + result.args.from +
+            " to " + result.args.to + ".");
+        console.log("Balances now:\n" +
+            "Sender: " + Coin.balances.call(result.args.from) +
+            "Receiver: " + Coin.balances.call(result.args.to));
+    }
+})
+Note how the automatically generated function balances is called from the user interface.
