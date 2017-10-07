@@ -31,3 +31,6 @@ target.write("\n")
 
 print "And finally, we can close it."
 target.close()
+target.close()
+target.close()
+target.close()
