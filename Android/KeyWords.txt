@@ -1,0 +1,5 @@
+Android Special KeyWords
+
+-IDE = Integrated Developement Environment
+-XML = Sintax Language
+-Attribute = Name + Value = Pair.
