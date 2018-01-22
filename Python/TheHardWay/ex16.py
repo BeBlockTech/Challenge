@@ -26,11 +26,8 @@ target.write(line1)
 target.write("\n")
 target.write(line2)
 target.write("\n")
-target.write("line3")
+target.write(line3)
 target.write("\n")
 
 print "And finally, we can close it."
-target.close()
-target.close()
-target.close()
 target.close()
