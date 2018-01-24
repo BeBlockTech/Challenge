@@ -2,13 +2,24 @@ let person = {
   name: 'Tyron',
   age: 40,
   weekendAlarm: 'No alarms needed',
-  weekAlarm: 'Alarm set to 7AM'
+  weekAlarm: 'Alarm set to 7AM',
+  
+  sayHello: function() {
+    return `Hello, my name is ${this.name}`;
+  },
+  
+  sayGoodbye() {
+    return 'Goodbye!';
+  }
+  
 };
 
-person.hobbies = ['Basketball', 'Football'];
-person.hobbies = ['Meditation'];
+console.log(person.sayHello());
 
+person.hobbies = ['Basketball', 'Coaching'];
+person.hobbies = ['Basketball'];
 console.log(person.hobbies);
+
 
 console.log(person['name']);
 console.log(person['age']);
