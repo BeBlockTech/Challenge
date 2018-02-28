@@ -1,0 +1,183 @@
+
+body, td, pre {
+    color:#000;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+body {
+    background:#FFF;
+}
+#ilAdvSelListAnchorElement_style_selection {
+    display:none;
+}
+.ilc_text_block_pagenumbering {
+    
+}
+
+.headline1 {
+margin-top: 20px !important;
+font-family: verdana,arial,helvetica !important;
+color: #71B801 !important;
+font-size: 1.3em !important;
+margin-bottom: 10px !important;
+font-weight: bold !important;
+}
+h1 {
+margin-top: 20px;
+font-family: verdana,arial,helvetica;
+color: #71B801;
+font-size: 1.3em;
+margin-bottom: 10px;
+font-weight: bold;
+}
+.headline2 {
+font-family: verdana,arial,helvetica !important;
+color: #837D74 !important;
+font-weight: bold !important;
+margin-top: 20px !important;
+font-size: 1.2em !important;
+margin-bottom: 10px !important;
+}
+h2 {
+font-family: verdana,arial,helvetica;
+color: #837D74;
+font-weight: bold;
+margin-top: 20px;
+font-size: 1.2em;
+margin-bottom: 10px;
+}
+.headline3 {
+margin-top: 20px !important;
+margin-bottom: 10px !important;
+font-size: 1em !important;
+font-weight: bold !important;
+}
+h3 {
+margin-top: 20px;
+margin-bottom: 10px;
+font-size: 1em;
+font-weight: bold;
+}
+.additional {
+margin-bottom: 10px !important;
+margin-top: 10px !important;
+border-color: #71B801 !important;
+border-style: solid !important;
+border-width: 1px !important;
+padding: 10px !important;
+font-family: verdana,arial,helvetica !important;
+font-size: 0.9em !important;
+text-align: left !important;
+}
+.citation {
+margin-top: 10px !important;
+font-style: italic !important;
+color: #71B801 !important;
+margin-bottom: 10px !important;
+font-size: 0.9em !important;
+}
+.example {
+border-left-style: solid !important;
+padding-left: 20px !important;
+margin-bottom: 10px !important;
+margin-top: 10px !important;
+border-left-width: 3px !important;
+border-left-color: #71B801 !important;
+font-family: verdana,arial,helvetica !important;
+font-size: 0.9em !important;
+}
+.list {
+margin-bottom: 3px !important;
+margin-top: 3px !important;
+font-family: verdana,arial,helvetica !important;
+font-size: 0.9em !important;
+}
+.mnemonic {
+margin-bottom: 10px !important;
+margin-left: 20px !important;
+margin-right: 20px !important;
+border-color: #FF0099 !important;
+border-width: 0px !important;
+margin-top: 10px !important;
+border-style: solid !important;
+font-family: verdana,arial,helvetica !important;
+font-size: 0.9em !important;
+text-indent: 0px !important;
+}
+.remark {
+border-width: 1px !important;
+padding: 10px !important;
+margin-bottom: 10px !important;
+border-style: solid !important;
+background-color: #E5E3DF !important;
+text-align: center !important;
+margin-top: 10px !important;
+border-color: #9B9A9E !important;
+font-family: verdana,arial,helvetica !important;
+font-size: 0.9em !important;
+}
+.standard {
+margin-top: 10px !important;
+font-size: 0.9em !important;
+margin-bottom: 0px !important;
+font-family: verdana,arial,helvetica !important;
+line-height: 130% !important;
+}
+.tablecontent {
+padding-bottom: 0px !important;
+padding-top: 0px !important;
+padding-right: 0px !important;
+padding-left: 0px !important;
+margin-bottom: 0px !important;
+margin-top: 0px !important;
+margin-right: 0px !important;
+margin-left: 0px !important;
+font-family: verdana,arial,helvetica !important;
+font-size: 0.9em !important;
+}
+.boldblauw {
+font-weight: bold !important;
+color: #71B801 !important;
+}
+.popupkruimel {
+font-size: 60% !important;
+font-family: Verdana !important;
+font-weight: bold !important;
+text-transform: uppercase !important;
+color: #837D74 !important;
+margin-top: 5px !important;
+margin-bottom: 20px !important;
+padding-bottom: 3px !important;
+width: 100% !important;
+border-style: none !important;
+}
+.popupopsomming {
+font-size: 12px !important;
+font-family: verdana,arial,helvetica !important;
+line-height: 130% !important;
+margin-top: 10px !important;
+margin-bottom: 0px !important;
+}
+.kleinkapitaal {
+font-variant: small-caps !important;
+font-size: 1em !important;
+}
+.highlight {
+font-weight: bold !important;
+color: #FFFFFF !important;
+background-color: #71B801 !important;
+}
+.supsup {
+font-size: x-small !important;
+vertical-align: super !important;
+}
+.italicblauw {
+color: #000099 !important;
+font-style: normal !important;
+font-weight: bold !important;
+}
+.blauw {
+color: #3366FF !important;
+}
+.rood {
+color: #990000 !important;
+}

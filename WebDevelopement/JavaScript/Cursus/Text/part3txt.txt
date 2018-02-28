@@ -1,0 +1,139 @@
+Identifiers zijn de termen die je mag gebruiken voor variabelen en functies. Doorheen de cursus zullen we regelmatig zulke identifiers moeten gebruiken en het is belangrijk te weten dat er toch enkele regels zijn voor de naamgeving.
+
+Ze mogen beginnen met een letter, een underscore _ , of een dollarteken $.
+Ze mogen niet beginnen met een getal.
+
+Enkele voorbeelden:
+
+var getal = 5;
+var $inhoud = document.getElementById('inhoud');
+function maakBullet()
+
+Bij conventie beginnen alle variabelenamen, functienamen en parameters met een kleine letter. Enkel Constructors krijgen een hoofdletter.
+
+Sleutelwoorden mag je niet gebruiken als variabele of functienaam.
+Er zijn er heel wat: break, do, this, final,...
+Alle sleutelwoorden worden in kleine letters geschreven.
+
+Doorheen deze cursus zullen we nog enkele niet verplichte richtlijnen volgen met betrekking tot de naamgeving van variabelen om de leesbaarheid van je scripts te vergroten.
+
+Globale variabelen schrijven we volledig in hoofdletters: STARTDATUM, PI
+
+Variabelen beginnen met een kleine letter en elk nieuw woord in de variablenaam wordt met een hoofdletter geschreven. Dit noemt men camelCasing. (bv vervangElkeSpatieDoorEenHoofdletter).
+
+We gebruiken prefixes om gekende datatypes aan te geven
+n voor getallen (bv nLeeftijd)
+s voor tekst (bv sInhoud)
+b voor booleaanse waarden (bv bAntwoord)
+o voor objecten (bv oData)
+a voor arrays (bv aWinkels)
+e voor een DOM element (bv eRij)
+
+Een variabele is een naam die een waarde krijgt. Een variabele laat je programma toe gegevens tijdelijk op te slaan en te wijzigen.
+
+De variabele krijgt een waarde of het resultaat van een bewerking toegewezen. In Javascript is het ook mogelijk een functie aan een variabele toe te wijzen. De eerste keer dat je een variabele wil gebruiken moet je ze declareren. Dit doe je simpelweg met het sleutelwoord var. Als je een variabele gebruikt die niet gedeclareerd is, krijg je een runtime error en het Javascript programma stopt.
+
+Voorbeelden:
+var i;
+var nTotaal;
+var sVoornaam;
+
+Je kan dit combineren met het toekennen van een waarde (initialiseren).
+
+Voorbeelden:
+var i = 0;
+var totaal = 23 * 7;
+var flag = true;
+var voorlopig = undefined;
+var lijst = ['jan','piet','pol'];
+var verwijder = function(){this.parentNode.removeChild(this)}
+
+Maak je geen zorgen als je deze variabelen nog niet allemaal juist kan interpreteren. Dit volgt verderop in de cursus.
+
+Elke variabele heeft ook een datatype. Het is een getal, een tekst, een boolean,... Javascript is een los getypeerde taal. Dit betekent dat er datatypes bestaan, maar ze worden niet streng toegepast. Javascript zal het datatype zelf invullen. In tegenstelling tot bij sterk getypeerde talen zoals C++ of Java zijn een aantal dingen mogelijk:
+
+Een variabele moet geen datatype toegekend worden tijdens de declaratie.
+Impliciete omzetting van sommige datatypes in andere types gaat heel makkelijk (voor zover mogelijk).
+Een variabele die een getal toegekend gekregen heeft, kan later zonder problemen een string toegekend krijgen.
+
+var i = 10;
+i = "tien";
+i += 5 // geeft "tien5"
+Als er twijfel bestaat over welk type een variabele is, gebruik dan de typeof operator:
+
+alert(typeof i);
+
+Functies;
+Een functie is een soort "deelprogramma" dat kan opgeroepen worden door andere code. Een functie bevat dus een aantal statements die als blok opgeroepen worden en dus meerdere malen uitgevoerd kunnen worden.
+
+function helloWorld(){
+        alert("hello world");
+}
+In Javascript zijn functies niet zomaar een block, het zijn ook Objects en dat betekent dat ze (net als andere objecten) ook eigenschappen en methods kunnen hebben naast hun eigenlijke inhoud.
+
+Doordat functies Objecten zijn, zijn het waarden en kunnen ze opgeslagen worden in variabelen, arrays en in objecten. Zo kunnen functies toegewezen worden als eigenschap van een object, in dat geval noemen we de functie een method.
+
+var machine = {
+   boren :  function() { ... },
+   zagen :  function() { ... },
+   kloppen :  function() { ... }
+}
+Een object machine heeft de methods boren(), zagen() en kloppen().
+
+Het sleutelwoord return kan een functie vroegtijdig beëindigen en/of eventueel een eindwaarde meegeven zodat de function een resultaat teruggeeft aan zijn caller.
+
+Dat is geen verplichting: indien een function geen return heeft, returnt die undefined.
+
+Een functie kan ook meerdere return statements bevatten, die afhangen van het programmaverloop.
+
+Een statement dat na een return staat, wordt nooit uitgevoerd.
+
+function kwadraat(getal){
+        return getal*getal;
+        getal = null //nooit uitgevoerd
+}
+In bovenstaand voorbeeld geeft de functie het kwadraat van het getal terug.
+
+De bedoeling van een returnwaarde is dat je die gebruikt:
+
+var opp = Math.PI * kwadraat(3);
+ 
+Functies kunnen (tot 255) argumenten (parameters) verwerken.
+
+Met uitzondering van objecten worden argumenten steeds doorgegeven by value, met andere woorden de waarde van de variabele wordt doorgegeven, niet de variabele zelf. Als de functie de waarde van de parameter wijzigt, is de oorspronkelijke waarde ongewijzigd.
+
+Objecten (Object, Array, Function) die als argument gebruikt worden, worden by reference doorgegeven, met andere woorden als de functie de eigenschappen van het object wijzigt, is deze wijziging blijvend.
+
+function absoluutVerschil(getal1,getal2){
+   if(getal1>getal2){
+      return getal1-getal2;
+   }
+   else{                
+      return getal2-getal1;
+   }
+}
+Als een functie opgeroepen wordt met teveel argumenten worden deze genegeerd.
+
+Als een functie opgeroepen wordt met te weinig argumenten, zijn deze undefined.
+
+function toonZe(strEen, strTwee){
+     var strConcat = strEen + strTwee;
+     alert(strConcat);
+}
+toonZe("jan","piet","joris"); //janpiet
+toonZe("jan"); //janundefined
+Je kan ook zogenaamde anonieme of lambda functies maken. Een anonieme functie werkt net als een andere maar heeft geen naam:
+
+div.onclick = function() { alert('new') };
+Ze worden veel gebruikt bij event handlers zoals hierboven. Als het click event plaatsheeft, zal de anonieme functie uitgevoerd worden.
+
+Een speciale vorm is een Self-Executing Anonymous Function:
+
+(function(){
+        alert('hello world');
+})()
+Doordat de function volledig in haakjes staat wordt het een expression. Deze expression wordt dan nog eens gevolgd door een extra paar hakjes waardoor die uitgevoerd wordt. Deze anonieme functie wordt dus onmiddellijk uitgevoerd als hij gelezen wordt door de parser.
+
+ 
+
+  
